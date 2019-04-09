@@ -12,7 +12,7 @@ class LongRunningOperationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_long_running_operation)
 
         button.setOnClickListener {
-            // TODO: Добавить остановку потока
+            Thread.sleep(3000)
         }
     }
 
