@@ -7,6 +7,7 @@ class CookModel {
     }
 
     private var mPresenter: IPresenter? = null
+    private var mState = CookingState.NotStarted
 
     fun start(pizza: String) {
     }
@@ -19,6 +20,7 @@ class CookModel {
 
     fun subscribe(presenter: IPresenter) {
         mPresenter = presenter
+        mPresenter?.update(mState)
     }
 
     fun unsubscribe() {
