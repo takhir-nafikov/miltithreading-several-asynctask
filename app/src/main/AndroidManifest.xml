@@ -3,6 +3,7 @@
     package="io.github.psgroup">
 
     <application
+        android:name=".application.PizzaMakerApplication"
         android:allowBackup="true"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -10,20 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".presentation.AuthorizationActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity
+            android:name=".presentation.CookActivity"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity
+            android:name=".presentation.LongRunningOperationActivity"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".DownloadingActivity"
-            android:theme="@style/AppTheme">
         </activity>
     </application>
 
