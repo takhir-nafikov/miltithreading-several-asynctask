@@ -7,7 +7,8 @@ class CookModel {
     }
 
     private var mPresenter: IPresenter? = null
-    private var mState = CookingState.NotStarted
+    private var mIsCancelled = false
+    private var mState: CookingState = CookingState.NotStarted
 
     fun start(pizza: String) {
     }
@@ -28,10 +29,14 @@ class CookModel {
     }
 
     companion object {
+        const val MIN_PROGRESS = 0
+        const val MAX_PROGRESS = 100
+
+        private const val PROGRESS_STEP = 20
         private val AVAILABLE_PIZZA = arrayOf(
-                "Margarita",
-                "Venezia",
-                "Salami"
+                "margarita",
+                "venezia",
+                "salami"
         )
     }
 
