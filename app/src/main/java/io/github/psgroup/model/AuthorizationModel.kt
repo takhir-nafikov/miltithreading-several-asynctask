@@ -8,12 +8,14 @@ class AuthorizationModel {
     }
 
     private var mPresenter: IPresenter? = null
+    private var mIsWait = false
 
     fun signIn(login: String, password: String) {
     }
 
     fun subscribe(presenter: IPresenter) {
         mPresenter = presenter
+        mPresenter?.waitSignIn(mIsWait)
     }
 
     fun unsubscribe() {
