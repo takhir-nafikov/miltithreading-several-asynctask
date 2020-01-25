@@ -15,8 +15,15 @@ class CookModel {
     private var mPresenter: IPresenter? = null
     private var mTask: AsyncTask<*, *, *>? = null
 
+    private val arrayOfTasks = arrayOf(mTask, mTask, mTask)
+
     fun start(index: Int) {
-        mTask = OrderPizzaTask().executeOnExecutor(executorService, index)
+        if (arrayOfTasks[index]?.status == AsyncTask.Status.RUNNING) {
+            arrayOfTasks[index]?.cancel(false)
+            mPresenter?.reset(index)
+        } else {
+            arrayOfTasks[index] = OrderPizzaTask().executeOnExecutor(executorService, index)
+        }
     }
 
     fun subscribe(presenter: IPresenter) {

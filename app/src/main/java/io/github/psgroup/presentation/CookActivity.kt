@@ -17,23 +17,23 @@ class CookActivity : AppCompatActivity(), CookModel.IPresenter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cook)
 
-        runOne.setOnClickListener { mModel.start(1) }
-        runTwo.setOnClickListener { mModel.start(2) }
-        runThree.setOnClickListener { mModel.start(3) }
+        runOne.setOnClickListener { mModel.start(0) }
+        runTwo.setOnClickListener { mModel.start(1) }
+        runThree.setOnClickListener { mModel.start(2) }
 
     }
 
     override fun update(index: Int, progress: Int) = when (index) {
-        1 -> seekBarOne.progress = progress
-        2 -> seekBarTwo.progress = progress
-        3 -> seekBarThree.progress = progress
+        0 -> seekBarOne.progress = progress
+        1 -> seekBarTwo.progress = progress
+        2 -> seekBarThree.progress = progress
         else -> {}
     }
 
     override fun reset(index: Int) = when (index) {
-        1 -> seekBarOne.progress = 0
-        2 -> seekBarTwo.progress = 0
-        3 -> seekBarThree.progress = 0
+        0 -> seekBarOne.progress = 0
+        1 -> seekBarTwo.progress = 0
+        2 -> seekBarThree.progress = 0
         else -> {}
     }
 
