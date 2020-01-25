@@ -1,5 +1,6 @@
 package io.github.psgroup.presentation
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import io.github.psgroup.R
@@ -16,16 +17,15 @@ class AuthorizationActivity : AppCompatActivity(), AuthorizationModel.IPresenter
         setContentView(R.layout.activity_authorization)
 
         button.setOnClickListener {
-            // TODO: Добавить вызов логинации
+            mModel.signIn("", "")
         }
     }
 
-    override fun waitSignIn(isWait: Boolean) {
-        // TODO: Добавить блокировку кнопки авторизации
-    }
+    override fun waitSignIn(isWait: Boolean) {}
 
     override fun signInCompleted() {
-        // TODO: Добавить переход на экран приготовления
+        val intent = Intent(this, CookActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onResume() {

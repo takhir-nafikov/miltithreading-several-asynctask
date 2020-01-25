@@ -17,56 +17,24 @@ class CookActivity : AppCompatActivity(), CookModel.IPresenter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cook)
 
-        buttonStart.setOnClickListener {
-            mModel.start(pizzaNameInput.text.toString())
-        }
+        runOne.setOnClickListener { mModel.start(1) }
+        runTwo.setOnClickListener { mModel.start(2) }
+        runThree.setOnClickListener { mModel.start(3) }
 
-        buttonStop.setOnClickListener {
-            mModel.stop()
-        }
-
-        buttonDelete.setOnClickListener {
-            mModel.delete()
-        }
     }
 
-    override fun update(cookingState: CookingState) = when (cookingState) {
-        CookingState.NotStarted -> {
-            progress.max = 0
-            progress.progress = 0
-            progressValue.text = "0%"
-            buttonStart.visibility = View.VISIBLE
-            buttonStop.visibility = View.GONE
-            buttonDelete.visibility = View.GONE
-            pizzaNameLayout.error = ""
-        }
-        is CookingState.InProgress -> {
-            progress.max = cookingState.max
-            progress.progress = cookingState.current
-            progressValue.text = "${cookingState.current}%"
-            buttonStart.visibility = View.GONE
-            buttonStop.visibility = View.VISIBLE
-            buttonDelete.visibility = View.GONE
-            pizzaNameLayout.error = ""
-        }
-        is CookingState.Completed -> {
-            progress.max = CookModel.MAX_PROGRESS
-            progress.progress = CookModel.MAX_PROGRESS
-            progressValue.text = "${CookModel.MAX_PROGRESS}%"
-            buttonStart.visibility = View.GONE
-            buttonStop.visibility = View.GONE
-            buttonDelete.visibility = View.VISIBLE
-            pizzaNameLayout.error = ""
-        }
-        is CookingState.Error -> {
-            progress.max = 0
-            progress.progress = 0
-            progressValue.text = "0%"
-            buttonStart.visibility = View.VISIBLE
-            buttonStop.visibility = View.GONE
-            buttonDelete.visibility = View.GONE
-            pizzaNameLayout.error = cookingState.error.name
-        }
+    override fun update(index: Int, progress: Int) = when (index) {
+        1 -> seekBarOne.progress = progress
+        2 -> seekBarTwo.progress = progress
+        3 -> seekBarThree.progress = progress
+        else -> {}
+    }
+
+    override fun reset(index: Int) = when (index) {
+        1 -> seekBarOne.progress = 0
+        2 -> seekBarTwo.progress = 0
+        3 -> seekBarThree.progress = 0
+        else -> {}
     }
 
     override fun onResume() {

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Pizza cooking</string>
     <string name="authorization_title">@string/app_name</string>
+    <string name="run">Run</string>
 </resources>

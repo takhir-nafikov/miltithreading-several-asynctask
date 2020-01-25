@@ -1,5 +1,8 @@
 package io.github.psgroup.model
 
+import android.os.Handler
+import android.os.Looper
+
 class AuthorizationModel {
 
     interface IPresenter {
@@ -11,6 +14,22 @@ class AuthorizationModel {
     private var mIsWait = false
 
     fun signIn(login: String, password: String) {
+        mIsWait = true
+        mPresenter?.waitSignIn(mIsWait)
+
+        val longRunningOperation = Runnable {
+            Thread.sleep(1000)
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.post {
+                mIsWait = false
+                mPresenter?.waitSignIn(mIsWait)
+                mPresenter?.signInCompleted()
+            }
+        }
+
+        val thread = Thread(longRunningOperation)
+        thread.start()
     }
 
     fun subscribe(presenter: IPresenter) {
@@ -21,5 +40,4 @@ class AuthorizationModel {
     fun unsubscribe() {
         mPresenter = null
     }
-
 }
